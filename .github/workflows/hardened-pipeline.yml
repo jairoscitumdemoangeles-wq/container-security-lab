@@ -21,9 +21,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+          cache: maven
 
       - name: Verify Java
         run: java --version
+
+      - name: Resolver las dependencias de Maven
+        working-directory: hardened
+        run: mvn dependency:resolve
 
       - name: Escaneos de seguridad de fuente y dependencias
         uses: aquasecurity/trivy-action@master
