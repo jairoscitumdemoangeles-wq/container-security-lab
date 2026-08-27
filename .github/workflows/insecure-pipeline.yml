@@ -32,3 +32,13 @@ jobs:
       - name: Build insecure application
         working-directory: insecure
         run: mvn clean package
+      
+      - name: Build insecure Docker image
+        run: |
+          docker build \
+            -f insecure/Dockerfile.insecure \
+            -t container-security-lab:insecure \
+            insecure
+
+      - name: Show Docker image
+        run: docker images container-security-lab
