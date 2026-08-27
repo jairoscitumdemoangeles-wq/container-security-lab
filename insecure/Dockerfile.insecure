@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+ENV DB_PASSWORD=DemoPassword123
+
+COPY . .
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "target/container-security-lab-1.0.0.jar"]

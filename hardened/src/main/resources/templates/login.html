@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portal del Empleado</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .login-container {
+            width: 350px;
+            margin: 120px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            margin-top: 15px;
+        }
+
+        .query {
+            margin-top: 20px;
+            font-size: 12px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h2>Hospital Demonios</h2>
+
+    <form method="POST" action="/login">
+
+        <label>Usuario</label>
+        <input
+                type="text"
+                name="username"
+                required>
+
+        <label>Contraseña</label>
+        <input
+                type="password"
+                name="password"
+                required>
+
+        <button type="submit">
+            Iniciar sesión
+        </button>
+
+    </form>
+
+    <div
+            class="error"
+            th:if="${error}"
+            th:text="${error}">
+    </div>
+
+    <div
+            class="query"
+            th:if="${query}">
+
+        <strong>Consulta ejecutada:</strong>
+
+        <pre th:text="${query}"></pre>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Portal del Empleado</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+
+        .query {
+            background: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Portal De Empleados</h1>
+
+<h2>Usuarios obtenidos</h2>
+
+<div class="query">
+
+    <strong>Consulta ejecutada:</strong>
+
+    <pre th:text="${query}"></pre>
+
+</div>
+
+<table>
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Contraseña</th>
+        <th>Rol</th>
+        <th>Email</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="user : ${users}">
+
+        <td th:text="${user.id}"></td>
+
+        <td th:text="${user.username}"></td>
+
+        <td th:text="${user.password}"></td>
+
+        <td th:text="${user.role}"></td>
+
+        <td th:text="${user.email}"></td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<a href="/">Cerrar sesión</a>
+
+</body>
+
+</html>

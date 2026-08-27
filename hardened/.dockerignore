@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+src/
+pom.xml
+
+Dockerfile.insecure
+Dockerfile.hardened
+
+*.json
+*.csv
+*.log
+
+README.md
+
+target/*
+!target/container-security-lab-1.0.0.jar
