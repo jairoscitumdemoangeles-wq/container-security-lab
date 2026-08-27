@@ -25,6 +25,10 @@ jobs:
       - name: Verify Java
         run: java --version
 
+      - name: Run unit tests
+        working-directory: insecure
+        run: mvn test
+
       - name: Build insecure application
         working-directory: insecure
         run: mvn clean package
