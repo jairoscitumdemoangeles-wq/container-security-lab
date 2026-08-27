@@ -1,0 +1,46 @@
+name: Hardened Container Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  secure-build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Verify Java
+        run: java --version
+
+      - name: Escaneos de seguridad de fuente y dependencias
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: './hardened'
+          format: 'table'
+          severity: 'HIGH, CRITICAL'
+          ignore-unfixed: true
+          exit-code: '0'
+
+      - name: Run pruebas unitarias test
+        working-directory: hardened
+        run: mvn test
+
+      - name: Construir aplicación hardenizada
+        working-directory: harden
+        run: mvn clean package -DskipTests
+
+      
