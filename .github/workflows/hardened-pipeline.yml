@@ -30,7 +30,7 @@ jobs:
         working-directory: hardened
         run: mvn dependency:resolve
 
-      - name: Escaneos de seguridad de fuente y dependencias
+      - name: Escaneos de seguridad de source y dependencias
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: fs
@@ -55,3 +55,11 @@ jobs:
       - name: Mostrar Imagen Docker
         run: docker images container-security-lab
 
+      - name: Escanear imagen Hardenizada con Trivy
+        uses: aquasecurity/trivy-action@master
+        with: 
+          image-ref: 'container-security-lab:hardened'
+          format: 'table'
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '0'
