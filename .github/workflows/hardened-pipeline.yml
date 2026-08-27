@@ -63,3 +63,14 @@ jobs:
           severity: HIGH,CRITICAL
           ignore-unfixed: true
           exit-code: '0'
+
+      - name: Security Gate - Bloquear Criticos
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'container-security-lab:hardened'
+          format: 'table'
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+
+
