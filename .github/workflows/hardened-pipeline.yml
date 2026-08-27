@@ -48,4 +48,10 @@ jobs:
         working-directory: hardened
         run: mvn clean package -DskipTests
 
-      
+      - name: Construir Imagen Docker Hardenizada
+        run: |
+          docker build -f hardened/Dockerfile.hardened -t container-security-lab:hardened hardened
+
+      - name: Mostrar Imagen Docker
+        run: docker images container-security-lab
+
