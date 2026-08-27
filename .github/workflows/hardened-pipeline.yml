@@ -45,7 +45,7 @@ jobs:
         run: mvn test
 
       - name: Construir aplicación hardenizada
-        working-directory: harden
+        working-directory: hardened
         run: mvn clean package -DskipTests
 
       
