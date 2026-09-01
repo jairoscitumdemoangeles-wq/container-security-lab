@@ -1,8 +1,8 @@
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21-jre-alpine-3.24
 
 WORKDIR /app
 
-RUN groupadd --system appgroup && useradd --system --gid appgroup --uid 10001 --no-create-home appuser
+RUN apk upgrade --no-cache && addgroup -S appgroup && adduser -S -D -H -u 10001 -G appgroup appuser
 
 COPY --chown=appuser:appgroup target/container-security-lab-1.0.0.jar app.jar
 
